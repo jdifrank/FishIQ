@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Fish>
+@{ ViewBag.Title = "Jacob's Fishing Website";
+
+                // get value of id route segment
+                int categoryid = Convert.ToInt32(ViewContext.RouteData.Values["category"]);
+                int locationid = Convert.ToInt32(ViewContext.RouteData.Values["location"]); }
+
+
+    
+<div class="text-center">
+    <br /><br />
+    <h2 class="display-4 mb-4">FishIQ </h2>
+
+    @foreach (Category c in ViewBag.Categories)
+    {
+        string btnCss = (categoryid == c.CategoryId) ? "btn btn-primary" : "btn btn-outline-primary";
+        <a asp-action="Index" asp-route-category="@c.CategoryId" class="@btnCss mr-1 mb-3">@c.Name</a>
+    }
+    <br />
+    @foreach (Location s in ViewBag.Locations)
+    {
+        string btnCss = (locationid == s.LocationId) ? "btn btn-primary" : "btn btn-outline-primary";
+        <a asp-action="Index" asp-route-location="@s.LocationId" class="@btnCss mr-1 mb-3">@s.Name</a>
+    }
+
+</div>
+<div class="mt-3">
+    <a asp-action="Add" asp-controller="Fish" class="ml-3"> Add Fish </a>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th> Name </th>
+                <th> Category </th>
+                <th> Difficulty </th>
+                <th> Season </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fish in Model)
+            {
+                <tr>
+                    <td> @fish.Name </td>
+                    <td> @fish.Category.Name </td>
+                    <td> @fish.Difficulty</td>
+                    <td> @fish.Location.Name </td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Fish" asp-route-id="@fish.FishId"
+                           class="btn btn-outline-secondary my-2">Edit</a>
+                        <a asp-action="Delete" asp-controller="Fish" asp-route-id="@fish.FishId"
+                           class="btn btn-outline-secondary">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

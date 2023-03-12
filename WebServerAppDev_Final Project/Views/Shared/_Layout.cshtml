@@ -1,0 +1,62 @@
+﻿@{ string controller =
+                    ViewContext.RouteData.Values["controller"].ToString();
+                string action =
+                    ViewContext.RouteData.Values["action"].ToString(); }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/
+                       jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+            <a class="navbar-brand" href="/">Jacob's Fishing Site</a>
+            <button class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-link
+                        @(controller == "Home" && action == "Index" ? "active" : "")"
+                       asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link
+                        @(controller == "Home" && action == "Advice" ? "active" : "")"
+                       asp-controller="Home" asp-action="Advice"> Advice </a>
+                    <a class="nav-link
+                        @(controller == "Home" && action == "Resources" ? "active" : "")"
+                       asp-controller="Home" asp-action="Resources">Resources </a>
+                    <a class="nav-link
+                        @(controller == "Home" && action == "About" ? "active" : "")"
+                       asp-controller="Home" asp-action="About">About Me</a>
+                </div>
+            </nav>
+        </nav>
+
+    </header>
+    <div class="page-container">
+        @RenderBody()
+        <div class="footer d-block">
+            <span class="text-muted ml-3">&#169; 2020 Copyright: <a href="https://www.linkedin.com/in/jacobdifrank/"> Jacob DiFrank </a> </span>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

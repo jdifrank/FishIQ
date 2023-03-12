@@ -1,0 +1,26 @@
+﻿@model Fish
+
+@{ ViewData["Title"] = "Delete Fish"; }
+
+<div id="delete-form">
+    <h1 class="display-4 pl-3">Delete Fish</h1>
+    <div class="mx-4">
+        <ul class="list-group mb-2">
+            <li class="list-group-item">
+                <h4>@Model?.Name</h4>
+            </li>
+            <li class="list-group-item">
+                Category: @Model?.Category.Name
+            </li>
+            <li class="list-group-item">
+                Location: @Model?.Location.Name
+            </li>
+        </ul>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="FishId" />
+            <button type="submit" class="btn btn-dark">Delete</button>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-dark">Cancel</a>
+        </form>
+    </div>
+</div>
